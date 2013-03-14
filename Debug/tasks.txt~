@@ -1,0 +1,31 @@
+task
+{
+	taskid	1
+	phase	0
+	period	10
+	execution	2
+	deadline	10
+	priority	2
+}
+
+task
+{
+	taskid	2
+	phase	0
+	period	10
+	execution	2
+	deadline	10
+	priority	2
+}
+
+task
+{
+	taskid	3
+	phase	0
+	period	10
+	execution	2
+	deadline	10
+	priority	2
+}
+
+
