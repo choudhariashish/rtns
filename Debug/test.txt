@@ -1,0 +1,69 @@
+
+file: tasks.txt
+
+Number of tasks in system: 5
+
+hyperperiod: 41760
+
+calculating Exe for tasks from Period,Deadline,density
+Tid: 1 exe : 4 since, d*D+1.0 : 0.4*10+1.0
+Tid: 2 exe : 6 since, d*D+1.0 : 0.3*20+1.0
+Tid: 3 exe : 10 since, d*D+1.0 : 0.25*40+1.0
+Tid: 4 exe : 3 since, d*D+1.0 : 0.2*15+1.0
+Tid: 5 exe : 3 since, d*D+1.0 : 0.1*30+1.0
+taskid: 1
+phase: 0
+period: 20
+execution: 4
+deadline: 10
+priority: 5
+utilization: 0.3
+density: 0.4
+qos: 20.1
+
+taskid: 2
+phase: 0
+period: 32
+execution: 6
+deadline: 20
+priority: 4
+utilization: 0.2
+density: 0.3
+qos: 30.2
+
+taskid: 3
+phase: 0
+period: 58
+execution: 10
+deadline: 40
+priority: 3
+utilization: 0.4
+density: 0.25
+qos: 40.3
+
+taskid: 4
+phase: 0
+period: 40
+execution: 3
+deadline: 15
+priority: 2
+utilization: 0.1
+density: 0.2
+qos: 40.3
+
+taskid: 5
+phase: 0
+period: 45
+execution: 3
+deadline: 30
+priority: 1
+utilization: 0.1
+density: 0.1
+qos: 40.3
+
+total density : 1.25
+Tid: 1 maxRespTime : 20 QoS : 1
+Tid: 2 maxRespTime : 22 QoS : 0.1
+Tid: 3 maxRespTime : 16 QoS : -0.6
+Tid: 4 maxRespTime : 6 QoS : -0.6
+Tid: 5 maxRespTime : 3 QoS : -0.9

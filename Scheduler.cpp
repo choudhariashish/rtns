@@ -5,25 +5,29 @@
  *      Author: ashish
  */
 #include "Scheduler.h"
+#include "Config.h"
+
 #include<iostream>
 #include<list>
 
 using namespace std;
 
-#define active	1
-#define idle	0
 
-void checkDeadlineMiss(list<TASK*> *_TaskList, int _currTime)
+int checkDeadlineMiss(list<TASK*> *_TaskList, int _currTime)
 {
+	int flag=0;
 	list<TASK*>::iterator it;
 	for( it=_TaskList->begin(); it!= _TaskList->end(); it++)
 	{
 		if((*it)->getDeadline() == _currTime && (*it)->getCurrExecution()<(*it)->getExecution())
 		{
 			(*it)->setStatus(idle);
-			cout<<" Miss Tid: "<<(*it)->getTaskId()<<endl;
+			(*it)->resetCurrExecution();
+			if(debug){cout<<"\nTime : "<<_currTime<<" Deadline Miss Tid: "<<(*it)->getTaskId();}
+			flag=1;
 		}
 	}
+	return flag;
 }
 
 int updateReadyTasks(list<TASK*> *_TaskList, int _currTime)
@@ -35,7 +39,7 @@ int updateReadyTasks(list<TASK*> *_TaskList, int _currTime)
 		if((*it)->getNextFireAt() == _currTime)
 		{
 			(*it)->setStatus(active);
-			(*it)->setDeadline(_currTime + (*it)->getPeriod());
+			(*it)->setDeadline(_currTime + (*it)->getDeadline());
 			(*it)->setNextFireAt(_currTime + (*it)->getPeriod());
 		}
 	}
@@ -73,15 +77,31 @@ TASK* getRMHighestPriority(list<TASK*> *_TaskList)
 	return TaskHighPriority;
 }
 
-float check_RM_Utilization(list<TASK*> *TaskList)
+float Scheduler::calculateUtilization(void)
 {
 	float utilization = 0.0;
 	list<TASK*>::iterator it;
+	int flag = 0;
+
 	for( it=TaskList->begin(); it!= TaskList->end(); it++)
 	{
 		utilization = utilization + ((float)(*it)->getExecution())/((float)(*it)->getPeriod());
+		if((*it)->getPeriod() != (*it)->getDeadline()) flag = 1;
 	}
+	if(flag) return 0.0;
+
 	return utilization;
+}
+
+float Scheduler::calculateDensity(void)
+{
+	float density = 0.0;
+	list<TASK*>::iterator it;
+	for( it=TaskList->begin(); it!= TaskList->end(); it++)
+	{
+		density = density + ((float)(*it)->getExecution())/((float)(*it)->getStaticDeadline());
+	}
+	return density;
 }
 
 int gcd(int a, int b)
@@ -97,7 +117,7 @@ int lcm(int a, int b)
   return (a*b)/gcd(a,b);
 }
 
-int calculateHyperperiod(list<TASK*> *TaskList)
+int Scheduler::calculateHyperperiod(void)
 {
 	int hyperperiod=1;
 	list<TASK*>::iterator it;
@@ -105,58 +125,30 @@ int calculateHyperperiod(list<TASK*> *TaskList)
 	{
 		hyperperiod = lcm(hyperperiod, (*it)->getPeriod());
 	}
+	if(debug){cout<<"\nhyperperiod: "<<hyperperiod<<endl;}
 	return hyperperiod;
 }
 
-void Scheduler::updateFirstFireAtTime(void)
+void Scheduler::printAllTasks(void)
 {
 	list<TASK*>::iterator it;
 	for( it=TaskList->begin(); it!= TaskList->end(); it++)
 	{
-		(*it)->setNextFireAt((*it)->getPhase());
-		if((*it)->getNextFireAt() == startTime)
-			(*it)->setStatus(active);
+		(*it)->printTaskParameters();
 	}
 }
-
-int RMPriorityScheduler::startScheduler(void)
+void Scheduler::printRespTimeOfAllTasks(void)
 {
-	float utilization=check_RM_Utilization(TaskList);
-
-	if(utilization == 0.0){cout<<"\n\nError: Utilization: "<<utilization<<"cannot continue..!"<<endl; return -1;}
-	if(utilization>0.68 && TaskList->size()>=4){cout<<"\n\nError: Utilization: "<<utilization<<" not schedulable by RM"<<endl;return -1;}
-
-	int startTime=0, endTime=calculateHyperperiod(TaskList);
-	int currTime = startTime;
-
-	if(!endTime){cout<<"\n\nError: Hyperperiod: "<<endTime<<endl;return -1;}
-	cout<<"\n\nHyperperiod: "<<endTime<<endl;
-
-	TASK *taskToSchedule = NULL;
-
-	while(currTime<endTime)
+	float QoS=0.0;
+	list<TASK*>::iterator it;
+	for( it=TaskList->begin(); it!= TaskList->end(); it++)
 	{
-		updateReadyTasks(TaskList, currTime);
-		taskToSchedule = getRMHighestPriority(TaskList);
+		QoS = ((float)(*it)->getMaxRespTime()-(float)(*it)->getStaticDeadline()) / ((float)(*it)->getStaticDeadline());
 
-		if(taskToSchedule->getTaskId() == 0)
-			cout<<"Time: "<<currTime<<" Tid: Slack "<<endl;
-		else
-		{
-			taskToSchedule->setCurrExecution(taskToSchedule->getCurrExecution()+1);
+//		cout<<"\n("<<(*it)->getMaxRespTime()<<"-"<<(float)(*it)->getStaticDeadline()<<")/"<<(float)(*it)->getStaticDeadline();
 
-			cout<<"Time: "<<currTime<<" Tid: "<<taskToSchedule->getTaskId()<<" Exe: "<<taskToSchedule->getCurrExecution()<<endl;
-
-			if(taskToSchedule->getCurrExecution()==taskToSchedule->getExecution())
-			{
-				taskToSchedule->setStatus(idle);
-				taskToSchedule->resetCurrExecution();
-				taskToSchedule = NULL;
-			}
-			checkDeadlineMiss(TaskList, currTime);
-		}
-		currTime++;
+		cout<<"\nTid: "<<(*it)->getTaskId()<<" maxRespTime : "<<(*it)->getMaxRespTime();
+		cout<<" QoS : "<<QoS;
+		QoS = 0.0;
 	}
-	return 0;
 }
-

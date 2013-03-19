@@ -1,0 +1,173 @@
+
+file: tasks.txt
+
+Number of tasks in system: 4
+
+hyperperiod: 120
+
+calculating Exe for tasks from Period,Deadline,density
+Tid: 1 exe : 1 since, d*D+1.0 : 0.02*8+1.0
+Tid: 2 exe : 1 since, d*D+1.0 : 0.03*18+1.0
+Tid: 3 exe : 1 since, d*D+1.0 : 0.01*28+1.0
+Tid: 4 exe : 2 since, d*D+1.0 : 0.03*37+1.0
+taskid: 1
+phase: 0
+period: 10
+execution: 1
+deadline: 8
+priority: 3
+utilization: 0.3
+density: 0.02
+qos: 20.1
+
+taskid: 2
+phase: 0
+period: 20
+execution: 1
+deadline: 18
+priority: 1
+utilization: 0.2
+density: 0.03
+qos: 30.2
+
+taskid: 3
+phase: 0
+period: 30
+execution: 1
+deadline: 28
+priority: 4
+utilization: 0.3
+density: 0.01
+qos: 40.3
+
+taskid: 4
+phase: 0
+period: 40
+execution: 2
+deadline: 37
+priority: 2.5
+utilization: 0.1
+density: 0.03
+qos: 40.3
+
+Time : 0 Tid : 2 Exe : 1 responseTime : 0
+Time : 1 Tid : 4 Exe : 1
+Time : 2 Tid : 4 Exe : 2 responseTime : 2
+Time : 3 Tid : 1 Exe : 1 responseTime : 3
+Time : 4 Tid : 3 Exe : 1 responseTime : 4
+Time : 5 Tid : slack
+Time : 6 Tid : slack
+Time : 7 Tid : slack
+Time : 8 Tid : slack
+Time : 9 Tid : slack
+Time : 10 Tid : 1 Exe : 1 responseTime : 0
+Time : 11 Tid : slack
+Time : 12 Tid : slack
+Time : 13 Tid : slack
+Time : 14 Tid : slack
+Time : 15 Tid : slack
+Time : 16 Tid : slack
+Time : 17 Tid : slack
+Time : 18 Tid : slack
+Time : 19 Tid : slack
+Time : 20 Tid : 2 Exe : 1 responseTime : 0
+Time : 21 Tid : 1 Exe : 1 responseTime : 1
+Time : 22 Tid : slack
+Time : 23 Tid : slack
+Time : 24 Tid : slack
+Time : 25 Tid : slack
+Time : 26 Tid : slack
+Time : 27 Tid : slack
+Time : 28 Tid : slack
+Time : 29 Tid : slack
+Time : 30 Tid : 1 Exe : 1 responseTime : 0
+Time : 31 Tid : 3 Exe : 1 responseTime : 1
+Time : 32 Tid : slack
+Time : 33 Tid : slack
+Time : 34 Tid : slack
+Time : 35 Tid : slack
+Time : 36 Tid : slack
+Time : 37 Tid : slack
+Time : 38 Tid : slack
+Time : 39 Tid : slack
+Time : 40 Tid : 2 Exe : 1 responseTime : 0
+Time : 41 Tid : 4 Exe : 1
+Time : 42 Tid : 4 Exe : 2 responseTime : 2
+Time : 43 Tid : 1 Exe : 1 responseTime : 3
+Time : 44 Tid : slack
+Time : 45 Tid : slack
+Time : 46 Tid : slack
+Time : 47 Tid : slack
+Time : 48 Tid : slack
+Time : 49 Tid : slack
+Time : 50 Tid : 1 Exe : 1 responseTime : 0
+Time : 51 Tid : slack
+Time : 52 Tid : slack
+Time : 53 Tid : slack
+Time : 54 Tid : slack
+Time : 55 Tid : slack
+Time : 56 Tid : slack
+Time : 57 Tid : slack
+Time : 58 Tid : slack
+Time : 59 Tid : slack
+Time : 60 Tid : 2 Exe : 1 responseTime : 0
+Time : 61 Tid : 1 Exe : 1 responseTime : 1
+Time : 62 Tid : 3 Exe : 1 responseTime : 2
+Time : 63 Tid : slack
+Time : 64 Tid : slack
+Time : 65 Tid : slack
+Time : 66 Tid : slack
+Time : 67 Tid : slack
+Time : 68 Tid : slack
+Time : 69 Tid : slack
+Time : 70 Tid : 1 Exe : 1 responseTime : 0
+Time : 71 Tid : slack
+Time : 72 Tid : slack
+Time : 73 Tid : slack
+Time : 74 Tid : slack
+Time : 75 Tid : slack
+Time : 76 Tid : slack
+Time : 77 Tid : slack
+Time : 78 Tid : slack
+Time : 79 Tid : slack
+Time : 80 Tid : 2 Exe : 1 responseTime : 0
+Time : 81 Tid : 4 Exe : 1
+Time : 82 Tid : 4 Exe : 2 responseTime : 2
+Time : 83 Tid : 1 Exe : 1 responseTime : 3
+Time : 84 Tid : slack
+Time : 85 Tid : slack
+Time : 86 Tid : slack
+Time : 87 Tid : slack
+Time : 88 Tid : slack
+Time : 89 Tid : slack
+Time : 90 Tid : 1 Exe : 1 responseTime : 0
+Time : 91 Tid : 3 Exe : 1 responseTime : 1
+Time : 92 Tid : slack
+Time : 93 Tid : slack
+Time : 94 Tid : slack
+Time : 95 Tid : slack
+Time : 96 Tid : slack
+Time : 97 Tid : slack
+Time : 98 Tid : slack
+Time : 99 Tid : slack
+Time : 100 Tid : 2 Exe : 1 responseTime : 0
+Time : 101 Tid : 1 Exe : 1 responseTime : 1
+Time : 102 Tid : slack
+Time : 103 Tid : slack
+Time : 104 Tid : slack
+Time : 105 Tid : slack
+Time : 106 Tid : slack
+Time : 107 Tid : slack
+Time : 108 Tid : slack
+Time : 109 Tid : slack
+Time : 110 Tid : 1 Exe : 1 responseTime : 0
+Time : 111 Tid : slack
+Time : 112 Tid : slack
+Time : 113 Tid : slack
+Time : 114 Tid : slack
+Time : 115 Tid : slack
+Time : 116 Tid : slack
+Time : 117 Tid : slack
+Time : 118 Tid : slack
+Time : 119 Tid : slack
+Deadline not missed

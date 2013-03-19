@@ -19,7 +19,7 @@
 
 using namespace std;
 
-int debug=0;
+int debug = 0;
 
 int throwInputFileError(void)
 {
@@ -77,21 +77,24 @@ int main(int argc, char* argv[])
 				if(buffer == "deadline"){inptFile>>buffer; task->setDeadline(atoi(buffer.c_str()));}else
 				if(buffer == "priority"){inptFile>>buffer; task->setPriority((atof(buffer.c_str())));}else
 				if(buffer == "qos"){inptFile>>buffer; task->setQos(atof(buffer.c_str()));}else
+				if(buffer == "utilization"){inptFile>>buffer; task->setUtilization(atof(buffer.c_str()));}else
+				if(buffer == "density"){inptFile>>buffer; task->setDensity(atof(buffer.c_str()));}else
 				if(buffer == "}"){break;} else return throwInputFileError();
 			}
+			task->setStaticDeadline(task->getDeadline());
 			TaskList->push_back(task);
-			if(debug){TaskList->back()->printTaskParameters();}
 		}
 	}
 	inptFile.close();
 	if(debug){cout<<"\nNumber of tasks in system: "<<TaskList->size()<<endl;}
 
-	RMPriorityScheduler RMS;
+	PriorityScheduler P_Sched;
 
-	Scheduler *RM_Scheduler = &RMS;
-	RM_Scheduler->setTaskSet(TaskList);
-	RM_Scheduler->setStartTime(0);
-	RMS.startScheduler();
+	Scheduler *Sched = &P_Sched;
+	Sched->setTaskSet(TaskList);
+	Sched->setStartTime(0);
+
+	P_Sched.start_Priority_Scheduler();
 
 	return 0;
 }

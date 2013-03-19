@@ -1,0 +1,102 @@
+
+file: taskSet1.txt
+
+Number of tasks in system: 3
+
+hyperperiod: 60
+
+calculating Exe for tasks from Period,Deadline,density
+Tid: 1 exe : 4 since, d*D+1.0 : 0.4*8+1.0
+Tid: 2 exe : 4 since, d*D+1.0 : 0.3*11+1.0
+Tid: 3 exe : 4 since, d*D+1.0 : 0.2*15+1.0
+taskid: 1
+phase: 0
+period: 15
+execution: 4
+deadline: 8
+priority: 0.2
+utilization: 0.3
+density: 0.4
+qos: 20.1
+
+taskid: 2
+phase: 0
+period: 20
+execution: 4
+deadline: 11
+priority: 0.1
+utilization: 0.2
+density: 0.3
+qos: 30.2
+
+taskid: 3
+phase: 0
+period: 30
+execution: 4
+deadline: 15
+priority: 0.8
+utilization: 0.3
+density: 0.2
+qos: 40.3
+
+Time : 0 Tid : 2 Exe : 1
+Time : 1 Tid : 2 Exe : 2
+Time : 2 Tid : 2 Exe : 3
+Time : 3 Tid : 2 Exe : 4 responseTime : 4
+Time : 4 Tid : 1 Exe : 1
+Time : 5 Tid : 1 Exe : 2
+Time : 6 Tid : 1 Exe : 3
+Time : 7 Tid : 1 Exe : 4 responseTime : 8
+Time : 8 Tid : 3 Exe : 1
+Time : 9 Tid : 3 Exe : 2
+Time : 10 Tid : 3 Exe : 3
+Time : 11 Tid : 3 Exe : 4 responseTime : 12
+Time : 12 Tid : slack
+Time : 13 Tid : slack
+Time : 14 Tid : slack
+Time : 15 Tid : 1 Exe : 1
+Time : 16 Tid : 1 Exe : 2
+Time : 17 Tid : 1 Exe : 3
+Time : 18 Tid : 1 Exe : 4 responseTime : 4
+Time : 19 Tid : slack
+Time : 20 Tid : 2 Exe : 1
+Time : 21 Tid : 2 Exe : 2
+Time : 22 Tid : 2 Exe : 3
+Time : 23 Tid : 2 Exe : 4 responseTime : 4
+Time : 24 Tid : slack
+Time : 25 Tid : slack
+Time : 26 Tid : slack
+Time : 27 Tid : slack
+Time : 28 Tid : slack
+Time : 29 Tid : slack
+Time : 30 Tid : 1 Exe : 1
+Time : 31 Tid : 1 Exe : 2
+Time : 32 Tid : 1 Exe : 3
+Time : 33 Tid : 1 Exe : 4 responseTime : 4
+Time : 34 Tid : 3 Exe : 1
+Time : 35 Tid : 3 Exe : 2
+Time : 36 Tid : 3 Exe : 3
+Time : 37 Tid : 3 Exe : 4 responseTime : 8
+Time : 38 Tid : slack
+Time : 39 Tid : slack
+Time : 40 Tid : 2 Exe : 1
+Time : 41 Tid : 2 Exe : 2
+Time : 42 Tid : 2 Exe : 3
+Time : 43 Tid : 2 Exe : 4 responseTime : 4
+Time : 44 Tid : slack
+Time : 45 Tid : 1 Exe : 1
+Time : 46 Tid : 1 Exe : 2
+Time : 47 Tid : 1 Exe : 3
+Time : 48 Tid : 1 Exe : 4 responseTime : 4
+Time : 49 Tid : slack
+Time : 50 Tid : slack
+Time : 51 Tid : slack
+Time : 52 Tid : slack
+Time : 53 Tid : slack
+Time : 54 Tid : slack
+Time : 55 Tid : slack
+Time : 56 Tid : slack
+Time : 57 Tid : slack
+Time : 58 Tid : slack
+Time : 59 Tid : slack
+Deadline not missed

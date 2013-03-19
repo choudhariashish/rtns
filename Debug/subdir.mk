@@ -4,16 +4,22 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../PriorityScheduler.cpp \
+../RM_DM_Scheduler.cpp \
 ../Scheduler.cpp \
 ../main.cpp \
 ../task.cpp 
 
 OBJS += \
+./PriorityScheduler.o \
+./RM_DM_Scheduler.o \
 ./Scheduler.o \
 ./main.o \
 ./task.o 
 
 CPP_DEPS += \
+./PriorityScheduler.d \
+./RM_DM_Scheduler.d \
 ./Scheduler.d \
 ./main.d \
 ./task.d 

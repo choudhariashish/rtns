@@ -6,6 +6,8 @@
  */
 #include"task.h"
 #include<iostream>
+#include<algorithm>
+
 using namespace std;
 
 void TASK::printTaskParameters(void)
@@ -16,6 +18,8 @@ void TASK::printTaskParameters(void)
 	cout<<"\nexecution: "<<this->getExecution();
 	cout<<"\ndeadline: "<<this->getDeadline();
 	cout<<"\npriority: "<<this->getPriority();
+	cout<<"\nutilization: "<<this->getUtilization();
+	cout<<"\ndensity: "<<this->getDensity();
 	cout<<"\nqos: "<<this->getQos()<<endl;
 }
 
@@ -27,9 +31,13 @@ TASK::TASK()
 	execution=0;
 	deadline=0;
 	priority=0;
+	utilization=0.0;
 	qos=0;
 	currExecution=0;
 	status = 0;
+	density=0.0;
+	minRespTime=0;
+	maxRespTime=0;
 }
 
 TASK::~TASK(){}
@@ -54,6 +62,10 @@ int TASK::getDeadline(void)
 {
 	return deadline;
 }
+int TASK::getStaticDeadline(void)
+{
+	return staticdeadline;
+}
 float TASK::getPriority(void)
 {
 	return priority;
@@ -64,7 +76,11 @@ float TASK::getQos(void)
 }
 float TASK::getUtilization(void)
 {
-	return ((float)execution)/((float)period);
+	return utilization;
+}
+float TASK::getDensity(void)
+{
+	return density;
 }
 int TASK::getCurrExecution(void)
 {
@@ -78,6 +94,16 @@ int TASK::getStatus(void)
 {
 	return status;
 }
+int TASK::getMinRespTime(void)
+{
+	return minRespTime;
+}
+int TASK::getMaxRespTime(void)
+{
+	return maxRespTime;
+}
+
+/*------------------------------------*/
 
 void TASK::setTaskId(int _taskid)
 {
@@ -90,18 +116,32 @@ void TASK::setPhase(int _phase)
 void TASK::setPeriod(int _period)
 {
 	period = _period;
+	minRespTime = period;
 }
 void TASK::setExecution(int _execution)
 {
 	execution = _execution;
+	maxRespTime = execution;
 }
 void TASK::setDeadline(int _deadline)
 {
 	deadline = _deadline;
 }
+void TASK::setStaticDeadline(int _staticdeadline)
+{
+	staticdeadline = deadline;
+}
 void TASK::setPriority(float _priority)
 {
 	priority = _priority;
+}
+void TASK::setUtilization(float _utilization)
+{
+	utilization = _utilization;
+}
+void TASK::setDensity(float _density)
+{
+	density = _density;
 }
 void TASK::setQos(float _qos)
 {
@@ -122,5 +162,23 @@ void TASK::setNextFireAt(int _nextFireAt)
 void TASK::setStatus(int _status)
 {
 	status = _status;
+}
+void TASK::updateUtilization_OR_Density(void)
+{
+	if(this->getPeriod() > this->getDeadline())
+	{
+		this->setDensity((float)this->getExecution()/((float)this->getDeadline()));
+		this->setUtilization(0.0);
+	}
+	else if(this->getPeriod() == this->getDeadline())
+	{
+		this->setUtilization((float)this->getExecution()/((float)this->getPeriod()));
+		this->setDensity(0.0);
+	}
+}
+void TASK::insertMinMaxRespTime(int _ResponseTime)
+{
+	maxRespTime = max(maxRespTime, _ResponseTime);
+	minRespTime = min(minRespTime, _ResponseTime);
 }
 

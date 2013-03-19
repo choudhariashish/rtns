@@ -10,17 +10,38 @@
 
 #include<iostream>
 #include<list>
+
 #include "task.h"
+#include "Config.h"
 
 using namespace std;
+
+int checkDeadlineMiss(list<TASK*> *_TaskList, int _currTime);
+int updateReadyTasks(list<TASK*> *_TaskList, int _currTime);
+TASK* getRMHighestPriority(list<TASK*> *_TaskList);
 
 class Scheduler
 {
 private:
-	void updateFirstFireAtTime(void);
+
 protected:
 	int startTime;
 	list<TASK*> *TaskList;
+	float calculateUtilization(void);
+	float calculateDensity(void);
+	int calculateHyperperiod(void);
+	void printAllTasks(void);
+	void printRespTimeOfAllTasks(void);
+	void updateFirstFireAtTime(void)
+	{
+		list<TASK*>::iterator it;
+		for( it=TaskList->begin(); it!= TaskList->end(); it++)
+		{
+			(*it)->setNextFireAt((*it)->getPhase());
+			if((*it)->getNextFireAt() == startTime)
+				(*it)->setStatus(active);
+		}
+	}
 public:
 	Scheduler(){startTime=0;};
 	~Scheduler(){};
@@ -32,10 +53,20 @@ public:
 	void setStartTime(int _startTime){startTime = _startTime; updateFirstFireAtTime();}
 };
 
-class RMPriorityScheduler : public Scheduler
+class RM_DM_Scheduler : public Scheduler
 {
 public:
-	int startScheduler(void);
+	int start_RM_Scheduler(void);
+};
+
+class PriorityScheduler : public Scheduler
+{
+private:
+	int highlightDeadlineMiss(int currTime);
+	TASK* getHighestPriorityTask(void);
+	void calculateExeFrom_P_D_d(void);
+public:
+	int start_Priority_Scheduler(void);
 };
 
 #endif /* SCHEDULER_H_ */
